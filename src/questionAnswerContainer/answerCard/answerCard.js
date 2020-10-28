@@ -10,12 +10,12 @@ const AnswerCard = (props) => {
     };
 
     return (
-        <>
-            <button className={handleStyle()} onClick={props.handleClick}>
+        <div>
+            <button id={props.id} className={handleStyle()} onClick={e=>{props.handleClick(e)}}>
                 {props.answer}
             </button>
             <br />
-        </>
+        </div>
     );
 };
 

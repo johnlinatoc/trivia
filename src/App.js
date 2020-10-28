@@ -7,6 +7,7 @@ const questions = require("./data/Apprentice_TandemFor400_Data.json");
 const App = () => {
   const [data, setData] = useState(null);
   const [correctNum, setCorrectNum] = useState(0);
+  const [questionCounter, setQuestionCounter] = useState(0)
 
   const shuffleQuestions = questions => {
     for (let i = questions.length - 1; i > 0; i--) {
@@ -21,23 +22,29 @@ const App = () => {
     setData(shuffledQuestions.splice(0,10));
   }, [])
 
-  const renderQuestionAnswerContainer = data => {
+  const incrementCounter = () => {
+    setQuestionCounter(questionCounter + 1);
+  }
+
+  const incrementCorrctCounter = () => {
+    setCorrectNum(correctNum + 1)
+  }
+
+  const renderQuestionAnswerContainers = data => {
     return data.map(singleQuestionAnswer => {
       return <QuestionAnswerContainer 
         question={singleQuestionAnswer.question}
-        answers={[singleQuestionAnswer.incorrect, singleQuestionAnswer.correct]}/>
+        answers={[singleQuestionAnswer.incorrect, singleQuestionAnswer.correct]}
+        incrementCounter={incrementCounter}
+        incrementCorrctCounter={incrementCorrctCounter}
+        questionCounter={questionCounter}/>
     })
   }
 
-  const incrementCounter = () => {
-    //increment counter
-  }
-
-  console.log(data)
   return (
     <div className={styles.app}>
       <h1>Welcome</h1>
-      {data && renderQuestionAnswerContainer(data)}
+      {data && renderQuestionAnswerContainers(data)}
     </div>
   );
 }
