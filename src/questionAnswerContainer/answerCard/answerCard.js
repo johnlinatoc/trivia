@@ -11,7 +11,7 @@ const AnswerCard = (props) => {
 
     return (
         <div>
-            <button id={props.id} className={handleStyle()} onClick={e=>{props.handleClick(e)}}>
+            <button id={props.id} className={handleStyle()} onClick={e=>{props.incrementCorrctCounter(e)}}>
                 {props.answer}
             </button>
             <br />
