@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AnswerCard from "./answerCard/answerCard";
 
 const styles = import("./questionAnswerContainer.module.scss");
@@ -9,11 +9,17 @@ const QuestionAnswerContainer = (props) => {
     const correctAnswer = allAnswers[1];
     const [enable, setEnable] = useState(true);
 
-    const handleAnswerClick = (e) => {
+
+    const incrementCorrctCounter = (e) => {
         setEnable(false);
-        props.incrementCounter();
         e.target.id === 'correct' && props.incrementCorrctCounter();
     };
+
+    console.log(enable)
+    const handleNextClick = () => {
+        setEnable(true);
+        props.incrementCounter();
+    }
 
 
     const renderCorrectAnswerCard = () => {
@@ -21,9 +27,9 @@ const QuestionAnswerContainer = (props) => {
             <AnswerCard
                 id="correct"
                 correct={true}
-                enable={enable}
+                enable={enable}          
                 answer={correctAnswer}
-                handleClick={e=>{handleAnswerClick(e)}}
+                incrementCorrctCounter={e=>{incrementCorrctCounter(e)}}
             />
         );
     };
@@ -35,11 +41,17 @@ const QuestionAnswerContainer = (props) => {
                     correct={false}
                     enable={enable}
                     answer={wrongAnswer}
-                    handleClick={e=>{handleAnswerClick(e)}}
+                    incrementCorrctCounter={e=>{incrementCorrctCounter(e)}}
                 />
             );
         });
     };
+
+    const renderButtons = () => {
+        if(props.currentQuestionCounter == 10 && !enable ) return <button onClick={props.showResults}>submit</button>
+        
+        if(!enable ) return <button onClick={handleNextClick}>next</button>
+    }
 
     return (
         <div>
@@ -50,7 +62,7 @@ const QuestionAnswerContainer = (props) => {
             {renderWrongAnswerCards()}
             <br />
             {props.index}
-            {props.questionCounter == 10 ? <button>submit</button> : null}
+            {renderButtons()}
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import QuestionAnswerContainer from './questionAnswerContainer/questionAnswerContainer';
+import ResultsContainer from './resultsContainer/resultsContainer'
 
 const styles = require("./App.module.scss");
 const questions = require("./data/Apprentice_TandemFor400_Data.json");
@@ -7,7 +8,8 @@ const questions = require("./data/Apprentice_TandemFor400_Data.json");
 const App = () => {
   const [data, setData] = useState(null);
   const [correctNum, setCorrectNum] = useState(0);
-  const [questionCounter, setQuestionCounter] = useState(0)
+  const [questionCounter, setQuestionCounter] = useState(1)
+  const [showResults, setShowResults] = useState(false);
 
   const shuffleQuestions = questions => {
     for (let i = questions.length - 1; i > 0; i--) {
@@ -30,6 +32,8 @@ const App = () => {
     setCorrectNum(correctNum + 1)
   }
 
+  console.log(questionCounter)
+
   const renderQuestionAnswerContainers = data => {
     return data.map(singleQuestionAnswer => {
       return <QuestionAnswerContainer 
@@ -37,14 +41,22 @@ const App = () => {
         answers={[singleQuestionAnswer.incorrect, singleQuestionAnswer.correct]}
         incrementCounter={incrementCounter}
         incrementCorrctCounter={incrementCorrctCounter}
-        questionCounter={questionCounter}/>
-    })
+        currentQuestionCounter={questionCounter}
+        showResults={handleResultsRender}/>
+    })[questionCounter-1]
+  }
+
+  console.log(questionCounter)
+
+  const handleResultsRender = () => {
+    setShowResults(true);
   }
 
   return (
     <div className={styles.app}>
       <h1>Welcome</h1>
       {data && renderQuestionAnswerContainers(data)}
+      {showResults && <ResultsContainer results={correctNum}/>}
     </div>
   );
 }
