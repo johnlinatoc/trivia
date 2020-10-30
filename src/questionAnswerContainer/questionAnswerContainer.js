@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AnswerCard from "./answerCard/answerCard";
+import {shuffleQuestions} from '../utils/ArrayUtils'
 
 const styles = import("./questionAnswerContainer.module.scss");
 
@@ -9,18 +10,15 @@ const QuestionAnswerContainer = (props) => {
     const correctAnswer = allAnswers[1];
     const [enable, setEnable] = useState(true);
 
-
     const incrementCorrctCounter = (e) => {
         setEnable(false);
         e.target.id === 'correct' && props.incrementCorrctCounter();
     };
 
-    console.log(enable)
     const handleNextClick = () => {
         setEnable(true);
         props.incrementCounter();
     }
-
 
     const renderCorrectAnswerCard = () => {
         return (
@@ -47,21 +45,22 @@ const QuestionAnswerContainer = (props) => {
         });
     };
 
+    const renderAllAnswers = () => {
+       const allAnswers =  [...renderWrongAnswerCards(), renderCorrectAnswerCard()];
+       return shuffleQuestions(allAnswers)
+    }
+
     const renderButtons = () => {
-        if(props.currentQuestionCounter == 10 && !enable ) return <button onClick={props.showResults}>submit</button>
+        if(props.currentQuestionCounter === 10 && !enable ) return <button onClick={props.showResults}>submit</button>
         
         if(!enable ) return <button onClick={handleNextClick}>next</button>
     }
 
     return (
+
         <div>
             {props.question}
-            <br />
-            {renderCorrectAnswerCard()}
-            <br />
-            {renderWrongAnswerCards()}
-            <br />
-            {props.index}
+            {renderAllAnswers()}
             {renderButtons()}
         </div>
     );

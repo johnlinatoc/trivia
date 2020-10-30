@@ -1,64 +1,82 @@
-import {useEffect, useState} from 'react';
-import QuestionAnswerContainer from './questionAnswerContainer/questionAnswerContainer';
-import ResultsContainer from './resultsContainer/resultsContainer'
+import { useEffect, useState } from "react";
+import QuestionAnswerContainer from "./questionAnswerContainer/questionAnswerContainer";
+import ResultsContainer from "./resultsContainer/resultsContainer";
+import { shuffleQuestions } from "./utils/ArrayUtils";
+import { uuid } from 'uuidv4';
 
 const styles = require("./App.module.scss");
-const questions = require("./data/Apprentice_TandemFor400_Data.json");
+const questions = require("./utils/test-data/Apprentice_TandemFor400_Data.json");
 
 const App = () => {
   const [data, setData] = useState(null);
   const [correctNum, setCorrectNum] = useState(0);
-  const [questionCounter, setQuestionCounter] = useState(1)
+  const [questionCounter, setQuestionCounter] = useState(1);
   const [showResults, setShowResults] = useState(false);
+  const [startGame, setStartGame] = useState(false);
 
-  const shuffleQuestions = questions => {
-    for (let i = questions.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [questions[i], questions[j]] = [questions[j], questions[i]];
-    }
-    return questions;
-}
-
-  useEffect(()=>{
+  useEffect(() => {
     const shuffledQuestions = shuffleQuestions(questions);
-    setData(shuffledQuestions.splice(0,10));
-  }, [])
+    setData(shuffledQuestions.splice(0, 10));
+  }, []);
 
   const incrementCounter = () => {
     setQuestionCounter(questionCounter + 1);
-  }
+  };
 
   const incrementCorrctCounter = () => {
-    setCorrectNum(correctNum + 1)
-  }
+    setCorrectNum(correctNum + 1);
+  };
 
-  console.log(questionCounter)
-
-  const renderQuestionAnswerContainers = data => {
-    return data.map(singleQuestionAnswer => {
-      return <QuestionAnswerContainer 
-        question={singleQuestionAnswer.question}
-        answers={[singleQuestionAnswer.incorrect, singleQuestionAnswer.correct]}
-        incrementCounter={incrementCounter}
-        incrementCorrctCounter={incrementCorrctCounter}
-        currentQuestionCounter={questionCounter}
-        showResults={handleResultsRender}/>
-    })[questionCounter-1]
-  }
-
-  console.log(questionCounter)
+  const renderQuestionAnswerContainers = (data) => {
+    return data.map((singleQuestionAnswer) => {
+      return (
+        <QuestionAnswerContainer
+          key={uuid()}
+          question={singleQuestionAnswer.question}
+          answers={[
+            singleQuestionAnswer.incorrect,
+            singleQuestionAnswer.correct,
+          ]}
+          incrementCounter={incrementCounter}
+          incrementCorrctCounter={incrementCorrctCounter}
+          currentQuestionCounter={questionCounter}
+          showResults={handleResultsRender}
+        />
+      );
+    })[questionCounter - 1];
+  };
 
   const handleResultsRender = () => {
-    setShowResults(true);
-  }
+    setShowResults(!showResults);
+  };
+
+  const handleResetGame = () => {
+    setStartGame(false);
+    setCorrectNum(0);
+    setQuestionCounter(1);
+    setData(shuffleQuestions(questions).splice(0, 10));
+  };
 
   return (
     <div className={styles.app}>
       <h1>Welcome</h1>
-      {data && renderQuestionAnswerContainers(data)}
-      {showResults && <ResultsContainer results={correctNum}/>}
+      {!startGame && (
+        <button onClick={() => setStartGame(true)}>Start Game</button>
+      )}
+      {data &&
+        !showResults &&
+        startGame &&
+        renderQuestionAnswerContainers(data)}
+      {showResults && (
+        <ResultsContainer
+          key={uuid()}
+          results={correctNum}
+          showResults={handleResultsRender}
+          restartGame={handleResetGame}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default App;

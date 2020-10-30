@@ -1,6 +1,7 @@
 const styles = require("./answerCard.module.scss");
 
 const AnswerCard = (props) => {
+    
     const handleStyle = () => {
         if (props.enable) {
             return styles.default;
