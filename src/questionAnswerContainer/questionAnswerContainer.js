@@ -5,22 +5,24 @@ import {shuffleQuestions} from '../utils/ArrayUtils'
 const styles = import("./questionAnswerContainer.module.scss");
 
 const QuestionAnswerContainer = (props) => {
-    const allAnswers = props.answers;
-    const wrongAnswers = allAnswers[0];
-    const correctAnswer = allAnswers[1];
     const [enable, setEnable] = useState(true);
+    const [correctClicked, setCorrectClicked] = useState(false)
 
     const incrementCorrctCounter = (e) => {
         setEnable(false);
-        e.target.id === 'correct' && props.incrementCorrctCounter();
+        e.target.id === 'correct' && setCorrectClicked(true);
     };
 
     const handleNextClick = () => {
-        setEnable(true);
+        correctClicked && props.incrementCorrctCounter()
+        setCorrectClicked(false)
         props.incrementCounter();
+        setEnable(true);
     }
 
     const renderCorrectAnswerCard = () => {
+        const correctAnswer = props.answers[1];
+
         return (
             <AnswerCard
                 id="correct"
@@ -32,6 +34,8 @@ const QuestionAnswerContainer = (props) => {
         );
     };
     const renderWrongAnswerCards = () => {
+        const wrongAnswers = props.answers[0];
+
         return wrongAnswers.map((wrongAnswer) => {
             return (
                 <AnswerCard
@@ -46,8 +50,7 @@ const QuestionAnswerContainer = (props) => {
     };
 
     const renderAllAnswers = () => {
-       const allAnswers =  [...renderWrongAnswerCards(), renderCorrectAnswerCard()];
-       return shuffleQuestions(allAnswers)
+       return  [...renderWrongAnswerCards(), renderCorrectAnswerCard()];
     }
 
     const renderButtons = () => {
