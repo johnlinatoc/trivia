@@ -59,9 +59,12 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <h1>Welcome</h1>
+     { }
       {!startGame && (
+        <div className={styles.starterScreen}>
+        <h1>Welcome</h1>
         <button onClick={() => setStartGame(true)}>Start Game</button>
+        </div>
       )}
       {data &&
         !showResults &&
