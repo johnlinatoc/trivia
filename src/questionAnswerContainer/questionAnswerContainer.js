@@ -63,6 +63,7 @@ const QuestionAnswerContainer = (props) => {
 
         <div>
             {props.question}
+            {correctClicked && !enable ? "Correct!" : !correctClicked && !enable ? "Sorry, incorrect" : null}
             {renderAllAnswers()}
             {renderButtons()}
         </div>

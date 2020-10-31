@@ -10,9 +10,13 @@ const AnswerCard = (props) => {
         return props.correct ? styles.correct : styles.wrong;
     };
 
+    const handleClick = e => {
+        props.enable && props.incrementCorrctCounter(e);
+    }
+
     return (
         <div>
-            <button id={props.id} className={handleStyle()} onClick={e=>{props.incrementCorrctCounter(e)}}>
+            <button id={props.id} className={handleStyle()} onClick={e=>{handleClick(e)}}>
                 {props.answer}
             </button>
             <br />
