@@ -8,6 +8,8 @@ describe("The App component", ()=>{
 
         expect(getByText('Welcome')).toBeInTheDocument();
     })
+
+    it("should render 10 unique questions when game started", ()=>{})
 }) 
 
 const renderApp = () => {
