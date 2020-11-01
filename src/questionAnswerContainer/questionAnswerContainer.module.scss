@@ -1,0 +1,39 @@
+.questionAnswerContainer {
+    display: flex;
+    flex-direction: column;
+    border: solid red;
+    padding: 0 1rem;
+    margin-top: 5rem;
+}
+
+.answerResult {
+    height: 3rem;
+    margin: 3rem auto;
+    font-size: 3rem;
+}
+
+.question {
+    height: 4rem;
+}
+
+.allAnswers {
+    display: flex;
+    justify-content: space-between;
+    // margin: 0 1rem;
+}
+
+.buttonContainer {
+    height: 3rem;
+    // background: yellow;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0;
+    align-items: center;
+}
+
+.button {
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    // margin-right: 1rem;
+}

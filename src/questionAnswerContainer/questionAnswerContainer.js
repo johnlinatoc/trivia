@@ -2,7 +2,7 @@ import { useState } from "react";
 import AnswerCard from "./answerCard/answerCard";
 import {shuffleQuestions} from '../utils/ArrayUtils'
 
-const styles = import("./questionAnswerContainer.module.scss");
+const styles = require("./questionAnswerContainer.module.scss");
 
 const QuestionAnswerContainer = (props) => {
     const [enable, setEnable] = useState(true);
@@ -54,18 +54,23 @@ const QuestionAnswerContainer = (props) => {
     }
 
     const renderButtons = () => {
-        if(props.currentQuestionCounter === 10 && !enable ) return <button onClick={props.showResults}>submit</button>
+        if(props.currentQuestionCounter === 10 && !enable ) return <button className={styles.button} onClick={props.showResults}>submit</button>
         
-        if(!enable ) return <button onClick={handleNextClick}>next</button>
+        if(!enable ) return <button className={styles.button}onClick={handleNextClick}>next</button>
     }
 
     return (
-
-        <div>
-            {props.question}
+        <div className={styles.questionAnswerContainer}>
+            <h1 className={styles.question}>Question {props.currentQuestionCounter} of 10<br/>{props.question}</h1>
+            <h2 className={styles.answerResult}>
             {correctClicked && !enable ? "Correct!" : !correctClicked && !enable ? "Sorry, incorrect" : null}
+            </h2>
+            <div className={styles.allAnswers}>
             {renderAllAnswers()}
+            </div>
+            <div className={styles.buttonContainer}>
             {renderButtons()}
+            </div>
         </div>
     );
 };

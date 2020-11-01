@@ -5,7 +5,9 @@ const ResultsContainer = (props) => {
     }
     
     return(<div>
-        {props.results}
+        <div>
+        You answered {props.results} out of 10 correct!
+        </div>
         <button onClick={handleClick}>Return To Homescreen</button>
     </div>)
 }
