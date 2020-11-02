@@ -7,9 +7,13 @@ const ResultsContainer = (props) => {
   };
 
   return (
-    <div className={styles.results}>
+    <div 
+    data-testid="results"
+    className={styles.results}>
       <h1>You answered {props.results} out of 10 correct!</h1>
-      <button onClick={handleClick}>Return To Homescreen</button>
+      <button 
+      data-testid="return-button"
+      onClick={handleClick}>Return To Homescreen</button>
     </div>
   );
 };

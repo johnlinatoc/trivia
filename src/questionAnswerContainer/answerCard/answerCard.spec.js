@@ -5,7 +5,7 @@ import AnswerCard from './answerCard'
 const incrementCorrctCounterMock = jest.fn();
 
 describe("The AnswerCard component", () => {
-    it("should render the AnswerCard component", () => {
+    it("should render <AnswerCard/>", () => {
         const {getByTestId} = renderAnswerCard();
         const answer = getByTestId('answer')
 
@@ -17,6 +17,7 @@ describe("The AnswerCard component", () => {
 const renderAnswerCard = () => {
     return render(<AnswerCard
         id="correct"
+        key='1'
         data-testid="answer"
         correct={true}
         enable={true}

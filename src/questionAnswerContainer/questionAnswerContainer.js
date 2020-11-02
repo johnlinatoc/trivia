@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AnswerCard from "./answerCard/answerCard";
-import {shuffleQuestions} from '../utils/ArrayUtils'
+import { uuid } from 'uuidv4';
 
 const styles = require("./questionAnswerContainer.module.scss");
 
@@ -26,6 +26,7 @@ const QuestionAnswerContainer = (props) => {
         return (
             <AnswerCard
                 id="correct"
+                key={uuid()}
                 correct={true}
                 enable={enable}          
                 answer={correctAnswer}
@@ -40,6 +41,7 @@ const QuestionAnswerContainer = (props) => {
             return (
                 <AnswerCard
                     id="false"
+                    key={uuid()}
                     data-testid="answer"
                     correct={false}
                     enable={enable}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent} from '@testing-library/react';
 import QuestionAnswerContainer from './questionAnswerContainer'
 
 const questions = require("../utils/test-data/Apprentice_TandemFor400_Data.json");
@@ -25,11 +25,13 @@ describe("The QuestionAnswerContainer component", ()=>{
         expect(answers[0].innerHTML).not.toEqual(answers[3].innerHTML)
     })
 
-    it("should reveal correct answer after selecting an option", ()=>{
-        const {getAllByTestId} = renderQuestionAnswerContainer();
-        const answers = getAllByTestId('answer');
+    it("should reveal correct answer after selecting an option", async ()=>{
+        const {getAllByTestId, debug} = renderQuestionAnswerContainer();
+        let answers = getAllByTestId('answer');
         fireEvent.click(answers[0])
-
+        answers = getAllByTestId('answer');
+            
+        expect(answers[0].className).toBe('wrong');
         expect(answers[0].className).toBe('wrong');
         expect(answers[1].className).toBe('wrong');
         expect(answers[2].className).toBe('wrong');
