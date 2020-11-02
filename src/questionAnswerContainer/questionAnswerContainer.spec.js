@@ -26,7 +26,7 @@ describe("The QuestionAnswerContainer component", ()=>{
     })
 
     it("should reveal correct answer after selecting an option", async ()=>{
-        const {getAllByTestId, debug} = renderQuestionAnswerContainer();
+        const {getAllByTestId} = renderQuestionAnswerContainer();
         let answers = getAllByTestId('answer');
         fireEvent.click(answers[0])
         answers = getAllByTestId('answer');
