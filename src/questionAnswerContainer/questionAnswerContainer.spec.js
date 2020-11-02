@@ -9,6 +9,11 @@ const incrementCorrectCounterMock=jest.fn();
 const showResultsMock=jest.fn();
 
 describe("The QuestionAnswerContainer component", ()=>{
+    it("should render <QuestionAnswerContainer/>", ()=>{
+        const {getByTestId} = renderQuestionAnswerContainer();
+
+        expect(getByTestId("question-answer-container")).toBeDefined();
+    })
 
     it("should display options one at a time", ()=>{
         const {getAllByTestId} = renderQuestionAnswerContainer();
@@ -32,6 +37,17 @@ describe("The QuestionAnswerContainer component", ()=>{
         expect(answers[3].className).toBe('correct')
     })
     
+    it("should allow user to only select one option", () => {
+        const {getAllByTestId, container} = renderQuestionAnswerContainer();
+        const answers = getAllByTestId('answer');
+        fireEvent.click(answers[0])
+
+        expect(container.innerHTML).toContain('incorrect')
+
+        fireEvent.click(answers[3])
+
+        expect(container.innerHTML).not.toContain('Correct')
+    })
 }) 
 
 const renderQuestionAnswerContainer = () => {

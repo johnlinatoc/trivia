@@ -58,7 +58,9 @@ const App = () => {
   };
 
   return (
-    <div className={styles.app}>
+    <div 
+    data-testid='app'
+    className={styles.app}>
       {!startGame && (
         <div className={styles.starterScreen}>
         <h1>Welcome</h1>

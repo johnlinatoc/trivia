@@ -2,12 +2,25 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import AnswerCard from './answerCard'
 
-describe("The AnswerCard component", ()=>{
+const incrementCorrctCounterMock = jest.fn();
 
-    it("", ()=>{})
-    it("should allow user to only select one option", ()=>{})
-}) 
+describe("The AnswerCard component", () => {
+    it("should render the AnswerCard component", () => {
+        const {getByTestId} = renderAnswerCard();
+        const answer = getByTestId('answer')
 
-const renderAnswerCardr = () => {
-    return render(<AnswerCard />);
+        expect(answer).toBeDefined();
+        expect(answer.innerHTML).toBe('any answer')
+    })
+})
+
+const renderAnswerCard = () => {
+    return render(<AnswerCard
+        id="correct"
+        data-testid="answer"
+        correct={true}
+        enable={true}
+        answer="any answer"
+        incrementCorrctCounter={incrementCorrctCounterMock}
+    />);
 }

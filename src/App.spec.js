@@ -3,6 +3,11 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 import App from './App';
 
 describe("The App component", ()=>{
+    it("should render <App/>", ()=>{
+        const {getByTestId} = renderApp();
+
+        expect(getByTestId("app")).toBeDefined();
+    })
 
     it("should render correct title", ()=>{
         const {getByText} = renderApp();
@@ -16,6 +21,7 @@ describe("The App component", ()=>{
         fireEvent.click(startButton);
 
         expect(getByTestId('question-answer-container')).toBeInTheDocument();
+        expect(getByTestId('question')).toBeInTheDocument();
     })
 
 }) 
