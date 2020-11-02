@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+HOW TO RUN
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. run "npm install"
+2. run "npm start"
 
-## Available Scripts
 
-In the project directory, you can run:
+Here are my steps in approaching this challenge:
 
-### `yarn start`
+1. Wrote down and analyzed needed features
+    I first read throught the prompt to fully understand what was needed. I paid more attention the acceptance criteria so that I would focus more on what was asked of and not on the extra features that could potentially slow development down. I could see that no data needed to be persisted, so I didn't think there was a big need for a backend at this point. That was where I decided just to have a simple frontend that would only need to use the test data provided by the challenge. After writing out all the necessary features, I started to visualize how the application will be. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Sketched out desired designs
+    Sketching out a design on a simple application helps me understand how the features would work with each other. I eventually sketched out and planned on having 3 main screens: the homescreen, question/answer screen, and the results screen. From there, I could see better what components I would need and not need. I knew I needed to have at lease 3 components that would cover all 3. I knew also that the question/answer screen would have to be broken up somehow to help compartmentalize code. After that, I was better equiped to built out the initial code structure. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. Planned and built out code structure
+    I started building 3 main components: App.js, QuestionAnswerContainer.js, and ResultContainer.js. I broke up the answers into their own component to help keep the code clean and more manageable. Building out the features was simple because of the preliminary work that was done in the setup. 
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. Covered code with tests and refactored along the way
+    I attempted to build out the tests as best as I could throughout the process. I wanted to make sure that all the points in the acceptance criteria of the prompt was visible in the tests and that they were all covered in the code. Refactoring was also a process throughout the whole development process. Sometimes, I needed to add or remove code to keep things clean and concise.
+    
+    If I could improve on this application, I would definitely improve the test coverage. I would test more of the features that were added that were not included in the acceptance criteria to ensure the healthiness of the application. I would also add a backend to give users the ability to save their scores, add more questions, or any other user interactivity that would increase joy in using the application. Overall, I am happy with how this turned out and I am grateful for the opportunity to be able to apply to be a part of this team.
