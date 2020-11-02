@@ -60,9 +60,13 @@ const QuestionAnswerContainer = (props) => {
     }
 
     return (
-        <div className={styles.questionAnswerContainer}>
+        <div 
+        data-testid="question-answer-container"
+        className={styles.questionAnswerContainer}>
             <h1 className={styles.questionNum}>Question {props.currentQuestionCounter} of 10</h1>
-            <h2 className={styles.question}>{props.question}</h2>
+            <h2 
+            data-testid="question"
+            className={styles.question}>{props.question}</h2>
             <h2 className={styles.answerResult}>
             {correctClicked && !enable ? "Correct!" : !correctClicked && !enable ? "Sorry, incorrect" : null}
             </h2>

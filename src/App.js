@@ -62,7 +62,9 @@ const App = () => {
       {!startGame && (
         <div className={styles.starterScreen}>
         <h1>Welcome</h1>
-        <button onClick={() => setStartGame(true)}>Start Game</button>
+        <button 
+        data-testid="start-button"
+        onClick={() => setStartGame(true)}>Start Game</button>
         </div>
       )}
       {data &&
