@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AnswerCard from "./answerCard/answerCard";
+import {shuffleQuestions} from '../utils/ArrayUtils'
 import { uuid } from 'uuidv4';
 
 const styles = require("./questionAnswerContainer.module.scss");
@@ -41,8 +42,8 @@ const QuestionAnswerContainer = (props) => {
             return (
                 <AnswerCard
                     id="false"
+                    data-testid='incorrect'
                     key={uuid()}
-                    data-testid="answer"
                     correct={false}
                     enable={enable}
                     answer={wrongAnswer}
@@ -53,7 +54,7 @@ const QuestionAnswerContainer = (props) => {
     };
 
     const renderAllAnswers = () => {
-       return  [...renderWrongAnswerCards(), renderCorrectAnswerCard()];
+       return  shuffleQuestions([...renderWrongAnswerCards(), renderCorrectAnswerCard()]);
     }
 
     const renderButtons = () => {
@@ -71,7 +72,7 @@ const QuestionAnswerContainer = (props) => {
             data-testid="question"
             className={styles.question}>{props.question}</h2>
             <h2 className={styles.answerResult}>
-            {correctClicked && !enable ? "Correct!" : !correctClicked && !enable ? "Sorry, incorrect" : null}
+            {correctClicked && !enable ? "Correct!" : !correctClicked && !enable ? "Sorry, incorrect. This was the correct answer." : null}
             </h2>
             <div className={styles.allAnswers}>
             {renderAllAnswers()}

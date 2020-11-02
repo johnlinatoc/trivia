@@ -26,17 +26,14 @@ describe("The QuestionAnswerContainer component", ()=>{
     })
 
     it("should reveal correct answer after selecting an option", async ()=>{
-        const {getAllByTestId} = renderQuestionAnswerContainer();
+        const {getAllByTestId, getByRole} = renderQuestionAnswerContainer();
         let answers = getAllByTestId('answer');
         fireEvent.click(answers[0])
-        answers = getAllByTestId('answer');
-            
-        expect(answers[0].className).toBe('wrong');
-        expect(answers[0].className).toBe('wrong');
-        expect(answers[1].className).toBe('wrong');
-        expect(answers[2].className).toBe('wrong');
-        expect(answers[3].className).not.toBe('wrong')
-        expect(answers[3].className).toBe('correct')
+        
+        expect((getByRole('button', {name: /Aegri somnia vana/i})).className).toBe('wrong');
+        expect((getByRole('button', {name: /Vidi, vini, vici/i})).className).toBe('wrong');
+        expect((getByRole('button', {name: /Iacta alea est!/i})).className).toBe('wrong');
+        expect((getByRole('button', {name: /Et tu, Brute?/i})).className).toBe('correct');
     })
     
     it("should allow user to only select one option", () => {
@@ -55,9 +52,9 @@ describe("The QuestionAnswerContainer component", ()=>{
 const renderQuestionAnswerContainer = () => {
     return render(<QuestionAnswerContainer 
     key={'key'}
-    question={questions[0].question}
-    answers={[questions[0].incorrect,
-    questions[0].correct]}
+    question={questions[1].question}
+    answers={[questions[1].incorrect,
+    questions[1].correct]}
     incrementCounter={incrementCounterMock}
     incrementCorrectCounter={incrementCorrectCounterMock}
     currentQuestionCounter={1}
