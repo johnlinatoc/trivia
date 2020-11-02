@@ -12,7 +12,7 @@ describe("The App component", ()=>{
     it("should render correct title", ()=>{
         const {getByText} = renderApp();
 
-        expect(getByText('Welcome')).toBeInTheDocument();
+    expect(getByText('Welcome!')).toBeInTheDocument();
     })
 
     it("should render first question when game started", ()=>{

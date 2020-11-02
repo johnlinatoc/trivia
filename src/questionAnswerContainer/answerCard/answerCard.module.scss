@@ -1,12 +1,16 @@
 .default {
-    color: blue;
     font-size: 1.5rem;
     width: 50%;
     min-height: 6rem;
+    border-radius: 10px;
+    border: 1px gray solid;
+    color: darkgreen;
 }
 
 .correct {
-    background-color: green;
+    border-radius: 10px;
+    border: 1px gray solid;
+    color: darkgreen;
     width: 50%;
     min-height: 6rem;
     font-size: 1.5rem;

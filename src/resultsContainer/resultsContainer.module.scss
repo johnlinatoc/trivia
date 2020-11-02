@@ -5,9 +5,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: #edae9f;
 
   button {
     width: 12rem;
     height: 3rem;
+    border-radius: 10px;
+    border: 1px gray solid;
+    color: darkgreen;
   }
 }

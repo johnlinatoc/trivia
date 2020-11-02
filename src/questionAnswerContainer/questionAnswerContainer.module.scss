@@ -4,12 +4,17 @@
     text-align: center;
     padding: 0 1rem;
     margin-top: 5rem;
+
+    h1 {
+    color: #edae9f;
+    }
 }
 
 .answerResult {
     height: 3rem;
     margin: 0 auto 2rem auto;
     font-size: 2rem;
+    color: #edae9f;
 }
 
 .question {
@@ -17,6 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .allAnswers {
@@ -38,4 +44,8 @@
     height: 2rem;
     font-size: 1rem;
     font-weight: bold;
+    border-radius: 6px;
+    border: 1px gray solid;
+    color: darkgreen;
+    width: 6rem;
 }
