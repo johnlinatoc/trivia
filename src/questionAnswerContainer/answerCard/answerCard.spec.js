@@ -5,6 +5,7 @@ import AnswerCard from './answerCard'
 describe("The AnswerCard component", ()=>{
 
     it("", ()=>{})
+    it("should allow user to only select one option", ()=>{})
 }) 
 
 const renderAnswerCardr = () => {

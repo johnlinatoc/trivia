@@ -15,6 +15,7 @@ const AnswerCard = (props) => {
 
   return (
     <button
+    data-testid="answer"
       id={props.id}
       className={handleStyle()}
       onClick={(e) => {
